@@ -82,13 +82,15 @@ const HomeStay = () => {
                   </div>
                 </div>
                 <p className="title is-4"></p>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d330275.5607100681!2d100.82555615590965!3d4.154941941093248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cb23c8145a3243%3A0xa9ab75b2757b9d7a!2sHomestay!5e0!3m2!1sid!2sid!4v1668268048888!5m2!1sid!2sid"
-                  width="100%"
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+                <Link>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d330275.5607100681!2d100.82555615590965!3d4.154941941093248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cb23c8145a3243%3A0xa9ab75b2757b9d7a!2sHomestay!5e0!3m2!1sid!2sid!4v1668268048888!5m2!1sid!2sid"
+                    width="100%"
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </Link>
               </div>
             </div>
           </div>
@@ -218,7 +220,7 @@ const HomeStay = () => {
                         </div>
                         <div className="media-content has-text-right">
                           <h3 className="title is-3 has-text-info">
-                            ${bookings.reduce((a, b) => a + b.total, 0) * 10}
+                            ${bookings.reduce((a, b) => a + b.total, 0)}
                           </h3>
                         </div>
                       </div>
@@ -228,9 +230,11 @@ const HomeStay = () => {
                         role="progressbar"
                         // value diambil dari bookings yang menjumlahkan semua nilai dari field total
                         value={
-                          bookings.reduce((a, b) => a + b.total, 0) / 100 > 100
+                          bookings.reduce((a, b) => a + b.total, 0) >=
+                          rooms.reduce((a, b) => a + b.price, 0)
                             ? 100
-                            : bookings.reduce((a, b) => a + b.total, 0) / 100
+                            : bookings.reduce((a, b) => a + b.total, 0) /
+                              rooms.reduce((a, b) => a + b.price, 0)
                         }
                         max="100"
                       ></progress>
@@ -256,9 +260,8 @@ const HomeStay = () => {
                         role="progressbar"
                         // value diambil dari bookings yang menjumlahkan semua nilai dari field total
                         value={
-                          rooms.reduce((a, b) => a + b.price, 0) / 100 > 100
-                            ? 100
-                            : rooms.reduce((a, b) => a + b.price, 0) / 100
+                          rooms.reduce((a, b) => a + b.price, 0) /
+                          (rooms.length * 10000)
                         }
                         max="100"
                       ></progress>

@@ -12,19 +12,32 @@ const AddRoom = () => {
 
   const saveRoom = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post("http://localhost:5000/rooms", {
-        name,
-        price,
-        bed,
-        facility,
-        status,
-      });
-      navigate("/rooms");
-    } catch (error) {
-      console.log(error);
-    }
+    const room = {
+      name,
+      price,
+      bed,
+      facility,
+      status,
+    };
+    await axios.post("http://localhost:5000/rooms", room);
+    navigate("/rooms");
   };
+
+  // const saveRoom = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await axios.post("http://localhost:5000/rooms", {
+  //       name,
+  //       price,
+  //       bed,
+  //       facility,
+  //       status,
+  //     });
+  //     navigate("/rooms");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div className="columns">
@@ -86,6 +99,7 @@ const AddRoom = () => {
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
                 >
+                  <option value="">Select Status</option>
                   <option value="available">Available</option>
                   <option value="unavailable">Unavailable</option>
                 </select>

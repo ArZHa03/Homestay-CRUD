@@ -19,7 +19,6 @@ const Room = mongoose.Schema({
   },
   status: {
     type: String,
-    required: true,
   },
 });
 

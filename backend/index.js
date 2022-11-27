@@ -6,10 +6,13 @@ import BookingRoute from "./routes/BookingRoute.js";
 import CustomerRoute from "./routes/CustomerRoute.js";
 
 const app = express();
-mongoose.connect("mongodb://localhost:27017/crud_mern_stack_db", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://knees:Knees.123@cluster0.dbxpnkq.mongodb.net/?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Database"));

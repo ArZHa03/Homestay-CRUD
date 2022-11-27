@@ -25,16 +25,6 @@ POST http://localhost:5000/bookings {
 }
 
 ###
-POST http://localhost:5000/rooms 
-{
-    "name": "Test",
-    "price": 100,
-    "bed": 2,
-    "facility": "TV, AC"
-    "status": "available"
-}
-
-###
 POST http://localhost:5000/rooms
 Content-Type: application/json
 
