@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Booking = mongoose.Schema({
+const backupBooking = new mongoose.Schema({
   id_room: {
     type: String,
     required: true,
@@ -23,4 +23,4 @@ const Booking = mongoose.Schema({
   },
 });
 
-export default mongoose.model("Bookings", Booking);
+export default mongoose.model("BackupBooking", backupBooking);

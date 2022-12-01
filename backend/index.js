@@ -4,6 +4,7 @@ import cors from "cors";
 import RoomRoute from "./routes/RoomRoute.js";
 import BookingRoute from "./routes/BookingRoute.js";
 import CustomerRoute from "./routes/CustomerRoute.js";
+import BackupBookingRoute from "./routes/BackupBookingRoute.js";
 
 const app = express();
 mongoose.connect(
@@ -22,5 +23,6 @@ app.use(express.json());
 app.use(RoomRoute);
 app.use(BookingRoute);
 app.use(CustomerRoute);
+app.use(BackupBookingRoute);
 
 app.listen(5000, () => console.log("Server has started."));

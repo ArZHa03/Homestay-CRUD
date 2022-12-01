@@ -20,6 +20,11 @@ const BookingList = () => {
 
   const deleteBooking = async (id, id_room) => {
     try {
+      // membackup data yang akan dihapus ke collection backup_bookings
+      const response = await axios.get(`http://localhost:5000/bookings/${id}`);
+      const data = response.data;
+      await axios.post("http://localhost:5000/backup_bookings", data);
+
       await axios.delete(`http://localhost:5000/bookings/${id}`);
       getBooking();
       await axios.patch(`http://localhost:5000/rooms/${id_room}`, {

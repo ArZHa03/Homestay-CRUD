@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const HomeStay = () => {
   const [customers, setCustomers] = useState([]);
   const [bookings, setBookings] = useState([]);
+  const [backup_bookings, setBackupBookings] = useState([]);
   const [rooms, setRooms] = useState([]);
 
   const getCustomers = async () => {
@@ -22,10 +23,16 @@ const HomeStay = () => {
     setRooms(response.data);
   };
 
+  const getBackupBookings = async () => {
+    const response = await axios.get("http://localhost:5000/backup_bookings");
+    setBackupBookings(response.data);
+  };
+
   useEffect(() => {
     getCustomers();
     getBookings();
     getRooms();
+    getBackupBookings();
   }, []);
 
   return (
@@ -220,7 +227,7 @@ const HomeStay = () => {
                         </div>
                         <div className="media-content has-text-right">
                           <h3 className="title is-3 has-text-info">
-                            ${bookings.reduce((a, b) => a + b.total, 0)}
+                            ${backup_bookings.reduce((a, b) => a + b.total, 0)}
                           </h3>
                         </div>
                       </div>
